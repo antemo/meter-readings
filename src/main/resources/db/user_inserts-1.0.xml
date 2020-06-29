@@ -1,0 +1,44 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet author="amodric" id="user_inserts-1.0">
+        <insert tableName="users">
+            <column name="user_name" value="admin"/>
+            <!-- plaintext password: superuser -->
+            <column name="password" value="$2a$10$SlBCCfeAq2Iy42g.rf0mvurOdGq6cdxNQtaC/ljTjavqal/Ggk8qW"/>
+            <column name="full_name" value="Meter reader admin"/>
+        </insert>
+        <insert tableName="user_permission">
+            <column name="user_id" valueComputed="(select id from users where users.user_name='admin')"/>
+            <column name="permission_id" valueComputed="(select id from permission where permission.name='USER_VIEW')"/>
+        </insert>
+        <insert tableName="user_permission">
+            <column name="user_id" valueComputed="(select id from users where users.user_name='admin')"/>
+            <column name="permission_id" valueComputed="(select id from permission where permission.name='USER_EDIT')"/>
+        </insert>
+        <insert tableName="user_permission">
+            <column name="user_id" valueComputed="(select id from users where users.user_name='admin')"/>
+            <column name="permission_id" valueComputed="(select id from permission where permission.name='METER_READING_VIEW')"/>
+        </insert>
+        <insert tableName="user_permission">
+            <column name="user_id" valueComputed="(select id from users where users.user_name='admin')"/>
+            <column name="permission_id" valueComputed="(select id from permission where permission.name='METER_READING_EDIT')"/>
+        </insert>
+        <insert tableName="user_permission">
+            <column name="user_id" valueComputed="(select id from users where users.user_name='admin')"/>
+            <column name="permission_id" valueComputed="(select id from permission where permission.name='METER_READING_ADD')"/>
+        </insert>
+        <insert tableName="user_permission">
+            <column name="user_id" valueComputed="(select id from users where users.user_name='admin')"/>
+            <column name="permission_id" valueComputed="(select id from permission where permission.name='CLIENT_VIEW')"/>
+        </insert>
+        <insert tableName="user_permission">
+            <column name="user_id" valueComputed="(select id from users where users.user_name='admin')"/>
+            <column name="permission_id" valueComputed="(select id from permission where permission.name='CLIENT_EDIT')"/>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>

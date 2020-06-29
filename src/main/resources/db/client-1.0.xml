@@ -1,0 +1,45 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet author="amodric" id="createTable-client">
+        <createTable tableName="client">
+            <column name="id" type="UUID" defaultValueComputed="${uuid}">
+                <constraints primaryKey="true" primaryKeyName="pk_client_id"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="meter_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created" type="DATETIME" defaultValueComputed="${now}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="VARCHAR(100)"/>
+            <column name="last_modification" type="DATETIME"/>
+            <column name="last_modified_by" type="VARCHAR(100)"/>
+        </createTable>
+
+        <addUniqueConstraint constraintName="uq_client_name" columnNames="name" tableName="client"/>
+        <addUniqueConstraint constraintName="uq_client_address_id" columnNames="address_id" tableName="client"/>
+        <addUniqueConstraint constraintName="uq_client_meter_id" columnNames="meter_id" tableName="client"/>
+
+        <addForeignKeyConstraint constraintName="fk_client_address_id"
+                                 baseColumnNames="address_id"
+                                 baseTableName="client"
+                                 referencedColumnNames="id"
+                                 referencedTableName="address"/>
+        <addForeignKeyConstraint constraintName="fk_client_meter_id"
+                                 baseColumnNames="meter_id"
+                                 baseTableName="client"
+                                 referencedColumnNames="id"
+                                 referencedTableName="meter"/>
+
+    </changeSet>
+
+</databaseChangeLog>

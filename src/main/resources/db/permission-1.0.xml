@@ -1,0 +1,48 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet author="amodric" id="createTable-permission">
+        <createTable tableName="permission">
+            <column name="id" type="INT">
+                <constraints primaryKey="true" primaryKeyName="pk_permission_id"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addUniqueConstraint constraintName="uq_permission_name" columnNames="name" tableName="permission"/>
+
+        <insert tableName="permission">
+            <column name="id" valueNumeric="1"/>
+            <column name="name" value="USER_VIEW"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="id" valueNumeric="2"/>
+            <column name="name" value="USER_EDIT"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="id" valueNumeric="11"/>
+            <column name="name" value="METER_READING_VIEW"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="id" valueNumeric="12"/>
+            <column name="name" value="METER_READING_EDIT"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="id" valueNumeric="13"/>
+            <column name="name" value="METER_READING_ADD"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="id" valueNumeric="21"/>
+            <column name="name" value="CLIENT_VIEW"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="id" valueNumeric="22"/>
+            <column name="name" value="CLIENT_EDIT"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

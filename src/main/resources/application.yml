@@ -1,0 +1,41 @@
+server:
+  servlet:
+    context-path: /meter-readings
+  port: 8080
+  ssl:
+    key-store: classpath:meter_reading.jks
+    key-store-password: m3t3R_re@ding
+    key-alias: meter_reading
+    key-password: m3t3R_re@ding
+    key-store-type: jks
+
+spring:
+  application:
+    name: Meter reader application
+  main:
+    banner-mode: LOG
+  liquibase:
+    change-log: classpath:/db/database-changelog-master.xml
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:postgresql://localhost:5432/meter
+    username: postgres
+    password: postgres
+    hikari:
+      maximum-pool-size: 10
+      pool-name: meterReadingsPool
+  output:
+    ansi:
+      enabled: always
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  mvc:
+    log-request-details: true
+logging:
+  pattern:
+    console: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS z}){faint} %clr(%5p) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wEx'
+  level:
+    root: info
+    nl:
+      codecat: debug

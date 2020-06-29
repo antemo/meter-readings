@@ -1,0 +1,609 @@
+{
+	"info": {
+		"_postman_id": "2aacea73-3547-415d-b6d1-1dc31138e71b",
+		"name": "Meter readings",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Client",
+			"item": [
+				{
+					"name": "Get clients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8080/meter-readings/clients",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"meter-readings",
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Zg client",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/client.v1+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"Zagreb client updated\",\r\n        \"address\": {\r\n            \"address\": \"2nd street 312a\",\r\n            \"postalCode\": \"10000\",\r\n            \"city\": \"Zagreb\",\r\n            \"country\": \"Croatia\"\r\n        },\r\n        \"meter\": {\r\n            \"id\": \"b5738cb5-9e50-4b87-9d5b-b97cea2991a4\",\r\n            \"name\": \"Test meter Zg\",\r\n            \"serialNumber\": \"123456789\"\r\n        },\r\n        \"id\": \"\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8080/meter-readings/clients",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"meter-readings",
+								"clients"
+							]
+						},
+						"description": "ID of Zg client should be copied from GET response"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Test client",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/new.client.v1+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"Test client\",\r\n        \"address\": {\r\n            \"address\": \"Main street 1\",\r\n            \"postalCode\": \"PPSH\",\r\n            \"city\": \"Boston\",\r\n            \"country\": \"USA\"\r\n        },\r\n        \"meter\": {\r\n            \"name\": \"Test meter Create\",\r\n            \"serialNumber\": \"123454321\"\r\n        }\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8080/meter-readings/clients",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"meter-readings",
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Test client",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/new.client.v1+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:8080/meter-readings/clients/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"meter-readings",
+								"clients",
+								""
+							]
+						},
+						"description": "ID of Test client should be copied from Create response"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/user.registration.v1+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"test\",\n\t\"fullName\": \"John Doe\",\n\t\"password\": \"Gue$t123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8080/meter-readings/register",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"meter-readings",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8080/meter-readings/users",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"meter-readings",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update 'test' user",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/user.v1+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"\",\n    \"username\": \"test\",\n    \"fullName\": \"John Doe\",\n    \"permissions\": [\n        \"USER_VIEW\",\n        \"METER_READING_VIEW\",\n        \"CLIENT_VIEW\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8080/meter-readings/users",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"meter-readings",
+								"users"
+							]
+						},
+						"description": "ID of test user should be copied from registration response"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users as 'test' user",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "Gue$t123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "test",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8080/meter-readings/users",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"meter-readings",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user as 'test' user",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "Gue$t123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "test",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/user.v1+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"10586a5f-0db3-48ac-b1bb-16ba67027056\",\n    \"username\": \"test\",\n    \"fullName\": \"John Doe\",\n    \"permissions\": [\n        \"USER_VIEW\",\n        \"METER_VIEW\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8080/meter-readings/users",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"meter-readings",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete 'test' user",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/user.v1+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:8080/meter-readings/users/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"meter-readings",
+								"users",
+								""
+							]
+						},
+						"description": "ID of test user should be copied from registration response"
+					},
+					"response": []
+				},
+				{
+					"name": "Get permissions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8080/meter-readings/permissions",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"meter-readings",
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "MeterReadings",
+			"item": [
+				{
+					"name": "Get all meter 1 readings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8080/meter-readings/readings/591fedfc-13a6-4f18-9392-fbe5b725cb4c",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"meter-readings",
+								"readings",
+								"591fedfc-13a6-4f18-9392-fbe5b725cb4c"
+							]
+						},
+						"description": "ID of meter should be copied from GET on clients"
+					},
+					"response": []
+				},
+				{
+					"name": "Get 2020 meter 1 readings",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/meter.reading.v1+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:8080/meter-readings/readings/591fedfc-13a6-4f18-9392-fbe5b725cb4c/2020",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"meter-readings",
+								"readings",
+								"591fedfc-13a6-4f18-9392-fbe5b725cb4c",
+								"2020"
+							]
+						},
+						"description": "ID of meter should be copied from GET on clients"
+					},
+					"response": []
+				},
+				{
+					"name": "Get aggregate 2019 meter 1 reading",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/aggregate.meter.reading.v1+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:8080/meter-readings/readings/591fedfc-13a6-4f18-9392-fbe5b725cb4c/2019",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"meter-readings",
+								"readings",
+								"591fedfc-13a6-4f18-9392-fbe5b725cb4c",
+								"2019"
+							]
+						},
+						"description": "ID of meter should be copied from GET on clients"
+					},
+					"response": []
+				},
+				{
+					"name": "Get NOVEMBER 2018 meter Zg reading",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8080/meter-readings/readings/b5738cb5-9e50-4b87-9d5b-b97cea2991a4/2018/NOVEMBER",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"meter-readings",
+								"readings",
+								"b5738cb5-9e50-4b87-9d5b-b97cea2991a4",
+								"2018",
+								"NOVEMBER"
+							]
+						},
+						"description": "ID of meter should be copied from GET on clients"
+					},
+					"response": []
+				},
+				{
+					"name": "Create meter 1 reading APRIL 2019",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/new.meter.reading.v1+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"meterId\": \"591fedfc-13a6-4f18-9392-fbe5b725cb4c\",\r\n    \"year\": 2019,\r\n    \"month\": \"APRIL\",\r\n    \"reading\": 17\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8080/meter-readings/readings",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"meter-readings",
+								"readings"
+							]
+						},
+						"description": "ID of meter should be copied from GET on clients"
+					},
+					"response": []
+				},
+				{
+					"name": "Update meter 1 reading APRIL 2019",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/meter.reading.v1+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"year\": 2019,\r\n    \"month\": \"APRIL\",\r\n    \"reading\": 13,\r\n    \"id\": \"6ccf9840-b5f0-4b45-bb49-c6c67f673760\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8080/meter-readings/readings",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"meter-readings",
+								"readings"
+							]
+						},
+						"description": "ID of reading should be copied from GET response"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete meter 1 reading APRIL 2019",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8080/meter-readings/readings/6ccf9840-b5f0-4b45-bb49-c6c67f673760",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"meter-readings",
+								"readings",
+								"6ccf9840-b5f0-4b45-bb49-c6c67f673760"
+							]
+						},
+						"description": "ID of reading should be copied from GET response"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "superuser",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "d1f09a34-0086-495c-817d-80c2e57f7a68",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "4d2344ac-6cc3-4760-a2cb-36f2c3f1f291",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

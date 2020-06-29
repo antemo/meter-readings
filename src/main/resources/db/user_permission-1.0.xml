@@ -1,0 +1,35 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet author="amodric" id="createTable-user_permission">
+        <createTable tableName="user_permission">
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="permission_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addUniqueConstraint constraintName="uq_user_permission_user_id_permission_id" columnNames="user_id, permission_id" tableName="user_permission"/>
+
+        <addForeignKeyConstraint constraintName="fk_user_permission_user_id"
+                                 baseColumnNames="user_id"
+                                 baseTableName="user_permission"
+                                 referencedColumnNames="id"
+                                 referencedTableName="users"/>
+        <addForeignKeyConstraint constraintName="fk_user_permission_permission_id"
+                                 baseColumnNames="permission_id"
+                                 baseTableName="user_permission"
+                                 referencedColumnNames="id"
+                                 referencedTableName="permission"/>
+
+    </changeSet>
+
+    <changeSet author="amodric" id="fix_table_ownership_role_permission" context="GCP" failOnError="false">
+        <sql>ALTER TABLE role_permission OWNER TO cloudsqlsuperuser;</sql>
+    </changeSet>
+
+</databaseChangeLog>

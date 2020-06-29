@@ -1,0 +1,150 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet author="amodric" id="initial_data_inserts-1.0">
+        <insert tableName="address">
+            <column name="address" value="1st street 123"/>
+            <column name="postal_code" value="15243"/>
+            <column name="city" value="Amsterdam"/>
+            <column name="country" value="Netherlands"/>
+        </insert>
+        <insert tableName="meter">
+            <column name="name" value="Test meter 1"/>
+            <column name="serial_number" value="314159265"/>
+        </insert>
+        <insert tableName="client">
+            <column name="name" value="Amsterdam client"/>
+            <column name="address_id" valueComputed="(select id from address where address.address='1st street 123')"/>
+            <column name="meter_id" valueComputed="(select id from meter where meter.serial_number='314159265')"/>
+        </insert>
+
+        <insert tableName="address">
+            <column name="address" value="2nd street 312"/>
+            <column name="postal_code" value="52413"/>
+            <column name="city" value="Zagreb"/>
+            <column name="country" value="Croatia"/>
+        </insert>
+        <insert tableName="meter">
+            <column name="name" value="Test meter 2"/>
+            <column name="serial_number" value="123456789"/>
+        </insert>
+        <insert tableName="client">
+            <column name="name" value="Zagreb client"/>
+            <column name="address_id" valueComputed="(select id from address where address.address='2nd street 312')"/>
+            <column name="meter_id" valueComputed="(select id from meter where meter.serial_number='123456789')"/>
+        </insert>
+
+        <insert tableName="meter_reading">
+            <column name="meter_id" valueComputed="(select id from meter where meter.serial_number='314159265')"/>
+            <column name="year" valueNumeric="2020"/>
+            <column name="month" value="JANUARY"/>
+            <column name="reading" valueNumeric="3"/>
+        </insert>
+        <insert tableName="meter_reading">
+            <column name="meter_id" valueComputed="(select id from meter where meter.serial_number='314159265')"/>
+            <column name="year" valueNumeric="2020"/>
+            <column name="month" value="FEBRUARY"/>
+            <column name="reading" valueNumeric="1"/>
+        </insert>
+        <insert tableName="meter_reading">
+            <column name="meter_id" valueComputed="(select id from meter where meter.serial_number='314159265')"/>
+            <column name="year" valueNumeric="2020"/>
+            <column name="month" value="MARCH"/>
+            <column name="reading" valueNumeric="4"/>
+        </insert>
+        <insert tableName="meter_reading">
+            <column name="meter_id" valueComputed="(select id from meter where meter.serial_number='314159265')"/>
+            <column name="year" valueNumeric="2020"/>
+            <column name="month" value="APRIL"/>
+            <column name="reading" valueNumeric="1"/>
+        </insert>
+        <insert tableName="meter_reading">
+            <column name="meter_id" valueComputed="(select id from meter where meter.serial_number='314159265')"/>
+            <column name="year" valueNumeric="2020"/>
+            <column name="month" value="MAY"/>
+            <column name="reading" valueNumeric="5"/>
+        </insert>
+        <insert tableName="meter_reading">
+            <column name="meter_id" valueComputed="(select id from meter where meter.serial_number='314159265')"/>
+            <column name="year" valueNumeric="2019"/>
+            <column name="month" value="JANUARY"/>
+            <column name="reading" valueNumeric="6"/>
+        </insert>
+        <insert tableName="meter_reading">
+            <column name="meter_id" valueComputed="(select id from meter where meter.serial_number='314159265')"/>
+            <column name="year" valueNumeric="2019"/>
+            <column name="month" value="MARCH"/>
+            <column name="reading" valueNumeric="5"/>
+        </insert>
+        <insert tableName="meter_reading">
+            <column name="meter_id" valueComputed="(select id from meter where meter.serial_number='314159265')"/>
+            <column name="year" valueNumeric="2019"/>
+            <column name="month" value="MAY"/>
+            <column name="reading" valueNumeric="4"/>
+        </insert>
+        <insert tableName="meter_reading">
+            <column name="meter_id" valueComputed="(select id from meter where meter.serial_number='314159265')"/>
+            <column name="year" valueNumeric="2019"/>
+            <column name="month" value="AUGUST"/>
+            <column name="reading" valueNumeric="3"/>
+        </insert>
+        <insert tableName="meter_reading">
+            <column name="meter_id" valueComputed="(select id from meter where meter.serial_number='314159265')"/>
+            <column name="year" valueNumeric="2019"/>
+            <column name="month" value="SEPTEMBER"/>
+            <column name="reading" valueNumeric="7"/>
+        </insert>
+        <insert tableName="meter_reading">
+            <column name="meter_id" valueComputed="(select id from meter where meter.serial_number='314159265')"/>
+            <column name="year" valueNumeric="2019"/>
+            <column name="month" value="DECEMBER"/>
+            <column name="reading" valueNumeric="8"/>
+        </insert>
+        <insert tableName="meter_reading">
+            <column name="meter_id" valueComputed="(select id from meter where meter.serial_number='123456789')"/>
+            <column name="year" valueNumeric="2020"/>
+            <column name="month" value="FEBRUARY"/>
+            <column name="reading" valueNumeric="6"/>
+        </insert>
+        <insert tableName="meter_reading">
+            <column name="meter_id" valueComputed="(select id from meter where meter.serial_number='123456789')"/>
+            <column name="year" valueNumeric="2020"/>
+            <column name="month" value="APRIL"/>
+            <column name="reading" valueNumeric="3"/>
+        </insert>
+        <insert tableName="meter_reading">
+            <column name="meter_id" valueComputed="(select id from meter where meter.serial_number='123456789')"/>
+            <column name="year" valueNumeric="2020"/>
+            <column name="month" value="MAY"/>
+            <column name="reading" valueNumeric="9"/>
+        </insert>
+        <insert tableName="meter_reading">
+            <column name="meter_id" valueComputed="(select id from meter where meter.serial_number='123456789')"/>
+            <column name="year" valueNumeric="2019"/>
+            <column name="month" value="JUNE"/>
+            <column name="reading" valueNumeric="7"/>
+        </insert>
+        <insert tableName="meter_reading">
+            <column name="meter_id" valueComputed="(select id from meter where meter.serial_number='123456789')"/>
+            <column name="year" valueNumeric="2019"/>
+            <column name="month" value="OCTOBER"/>
+            <column name="reading" valueNumeric="4"/>
+        </insert>
+        <insert tableName="meter_reading">
+            <column name="meter_id" valueComputed="(select id from meter where meter.serial_number='123456789')"/>
+            <column name="year" valueNumeric="2018"/>
+            <column name="month" value="JULY"/>
+            <column name="reading" valueNumeric="8"/>
+        </insert>
+        <insert tableName="meter_reading">
+            <column name="meter_id" valueComputed="(select id from meter where meter.serial_number='123456789')"/>
+            <column name="year" valueNumeric="2018"/>
+            <column name="month" value="NOVEMBER"/>
+            <column name="reading" valueNumeric="11"/>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>

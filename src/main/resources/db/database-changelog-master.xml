@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <property name="now" value="timezone('utc'::text, now())" dbms="postgresql"/>
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="uuid" value="uuid_generate_v4()" dbms="postgresql"/>
+    <property name="uuid" value="random_uuid()" dbms="h2"/>
+
+    <include file="classpath:/db/extensions-1.0.xml"/>
+
+    <include file="classpath:/db/address-1.0.xml"/>
+    <include file="classpath:/db/meter-1.0.xml"/>
+    <include file="classpath:/db/client-1.0.xml"/>
+    <include file="classpath:/db/meter_reading-1.0.xml"/>
+
+    <include file="classpath:/db/permission-1.0.xml"/>
+    <include file="classpath:/db/users-1.0.xml"/>
+    <include file="classpath:/db/user_permission-1.0.xml"/>
+
+    <include file="classpath:/db/user_inserts-1.0.xml"/>
+
+    <include file="classpath:/db/initial_data_inserts-1.0.xml"/>
+
+</databaseChangeLog>

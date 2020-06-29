@@ -1,0 +1,41 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet author="amodric" id="createTable-meter_reading">
+        <createTable tableName="meter_reading">
+            <column name="id" type="UUID" defaultValueComputed="${uuid}">
+                <constraints primaryKey="true" primaryKeyName="pk_meter_reading_id"/>
+            </column>
+            <column name="meter_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="year" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="month" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reading" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created" type="DATETIME" defaultValueComputed="${now}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="VARCHAR(100)"/>
+            <column name="last_modification" type="DATETIME"/>
+            <column name="last_modified_by" type="VARCHAR(100)"/>
+        </createTable>
+
+        <addUniqueConstraint constraintName="uq_meter_reading_meter_id_year_month" columnNames="meter_id, year, month" tableName="meter_reading"/>
+
+        <addForeignKeyConstraint constraintName="fk_meter_reading_meter_id"
+                                 baseColumnNames="meter_id"
+                                 baseTableName="meter_reading"
+                                 referencedColumnNames="id"
+                                 referencedTableName="meter"/>
+
+    </changeSet>
+
+</databaseChangeLog>
